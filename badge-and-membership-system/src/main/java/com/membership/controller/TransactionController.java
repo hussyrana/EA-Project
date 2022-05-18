@@ -5,6 +5,7 @@ import com.membership.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,12 +30,12 @@ public class TransactionController {
     }
 
     @PostMapping
-    public Transaction addNewTransaction(@RequestBody Transaction transaction){
+    public Transaction addNewTransaction(@RequestBody @Valid Transaction transaction){
         return transactionService.save(transaction);
     }
 
     @PutMapping("/{id}")
-    public Transaction updateTransaction(@PathVariable(name = "id") long id, @RequestBody Transaction transaction){
+    public Transaction updateTransaction(@PathVariable(name = "id") long id, @RequestBody @Valid Transaction transaction){
         return transactionService.update(id, transaction);
     }
 

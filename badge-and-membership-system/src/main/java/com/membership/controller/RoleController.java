@@ -5,6 +5,7 @@ import com.membership.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,12 +25,12 @@ public class RoleController {
     }
 
     @PostMapping
-    public Role addARole(@RequestBody Role role){
+    public Role addARole(@RequestBody @Valid Role role){
         return roleService.save(role);
     }
 
     @PutMapping("/{id}")
-    public Role updateARole(@PathVariable(name = "id") Long id, @RequestBody Role role){
+    public Role updateARole(@PathVariable(name = "id") Long id, @RequestBody @Valid Role role){
        return roleService.update(id, role);
     }
 

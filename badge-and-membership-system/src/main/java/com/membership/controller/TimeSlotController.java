@@ -5,6 +5,7 @@ import com.membership.service.TimeSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -24,15 +25,15 @@ public class TimeSlotController {
     }
 
     @PostMapping("/location/{locationId}")
-    public TimeSlot saveByLocation(@RequestBody TimeSlot timeSlot, @RequestParam(name = "locationId") long locationId){
+    public TimeSlot saveByLocation(@RequestBody @Valid TimeSlot timeSlot, @RequestParam(name = "locationId") long locationId){
         return timeSlotService.save(timeSlot, locationId);
     }
     @PostMapping
-    public TimeSlot addNewTimeSlot(@RequestBody TimeSlot timeSlot){
+    public TimeSlot addNewTimeSlot(@RequestBody @Valid TimeSlot timeSlot){
         return timeSlotService.addNew(timeSlot);
     }
     @PutMapping(value = "/{id}")
-    public TimeSlot updateById(@RequestBody TimeSlot timeSlot, @PathVariable long id){
+    public TimeSlot updateById(@RequestBody @Valid TimeSlot timeSlot, @PathVariable long id){
         return timeSlotService.update(timeSlot, id);
     }
     @DeleteMapping(value = "/{id}")

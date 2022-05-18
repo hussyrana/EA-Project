@@ -7,7 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,8 +23,10 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private LocalDate dateTime;
+    @NotNull(message = "transaction date time should not be null")
+    private LocalDateTime dateTime;
 
+    @Valid
     @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "membership_id")
@@ -31,14 +36,17 @@ public class Transaction {
 //    @ManyToOne(cascade = CascadeType.PERSIST)
 //    private Member member;
 
+    @Valid
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
 
+    @Valid
     @ManyToOne
     @JoinColumn(name = "activity_type_id")
     private ActivityType activityType;
 
+    @NotNull(message = "transaction status should not be null")
     private boolean isSuccessful;
 
 

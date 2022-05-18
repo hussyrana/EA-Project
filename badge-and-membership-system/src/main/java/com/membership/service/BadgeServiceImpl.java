@@ -1,6 +1,7 @@
 package com.membership.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -119,7 +120,7 @@ public class BadgeServiceImpl implements BadgeService {
 
 		Transaction transaction = new Transaction();
 		transaction.setSuccessful(true);
-		transaction.setDateTime(LocalDate.now());
+		transaction.setDateTime(LocalDateTime.now());
 //		transaction.setMember(member);
 //		transaction.setMembership(membership);
 		transaction.setLocation(location);

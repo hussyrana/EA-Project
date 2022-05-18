@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import com.membership.domain.Badge;
 import com.membership.service.BadgeService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/badges")
 public class BadgeController {
@@ -21,7 +23,7 @@ public class BadgeController {
 	}
 	
 	@PutMapping("/{id}")
-	public Badge updateBadge(@PathVariable(name="id") String id, @RequestBody Badge updatedBadge ) {
+	public Badge updateBadge(@PathVariable(name="id") String id, @RequestBody @Valid Badge updatedBadge ) {
 		Long badgeId = Long.parseLong(id);
 		return badgeService.update(badgeId, updatedBadge);
 	}

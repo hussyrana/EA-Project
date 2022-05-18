@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,14 +19,20 @@ public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull(message = "plan name should not be null")
+    @NotEmpty(message = "plan name should not be empty")
     private String name;
+
     private String description;
     @ManyToMany
     @JoinTable(name="Plan_Location",
             joinColumns = {@JoinColumn(name="Plan_id")},
             inverseJoinColumns = {@JoinColumn(name="Location_id")}
     )
+
     private Set<Location> locations;
+
     @OneToMany
     @JoinTable(name="Plan_Role",
             joinColumns = {@JoinColumn(name="Plan_id")},

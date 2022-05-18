@@ -5,6 +5,7 @@ import com.membership.service.ActivityTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,11 +24,11 @@ public class ActivityTypeController {
     }
 
     @PostMapping
-    public ActivityType addActivityType(@RequestBody ActivityType activityType){
+    public ActivityType addActivityType(@RequestBody @Valid ActivityType activityType){
         return activityTypeService.save(activityType);
     }
     @PutMapping(value = "/{id}")
-    public ActivityType updateActivityTypeById(@RequestBody ActivityType activityType, @PathVariable long id){
+    public ActivityType updateActivityTypeById(@RequestBody @Valid ActivityType activityType, @PathVariable long id){
         return activityTypeService.update(activityType, id);
     }
     @DeleteMapping(value = "/{id}")

@@ -12,6 +12,8 @@ import com.membership.domain.Plan;
 import com.membership.domain.Transaction;
 import com.membership.repository.MemberRepository;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/memberships")
 public class MembershipController 
@@ -64,7 +66,7 @@ public class MembershipController
 //		return membershipService.addLocation(id, location);
 //	}
 	@PatchMapping("/{id}/plan")
-	public Membership addPlanForMembership(@PathVariable(name = "id") Long id, @RequestBody Plan plan){
+	public Membership addPlanForMembership(@PathVariable(name = "id") Long id, @RequestBody @Valid Plan plan){
 		return membershipService.addPlanForMembership(id, plan);
 	}
 

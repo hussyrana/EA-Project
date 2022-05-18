@@ -1,13 +1,12 @@
 package com.membership.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,6 +22,8 @@ public class ActivityType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "activity name should not be null")
+    @NotEmpty(message = "activity name should not be empty")
     @Column(unique = true, name="activity_name")
     private String activityName;
     

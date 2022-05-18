@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.membership.service.MemberService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/members")
 public class MemberController {
@@ -37,7 +39,7 @@ public class MemberController {
 	}
 	
 	@PatchMapping("/{id}/badges")
-	public Member addMemberBadge(@PathVariable(name="id") String id, @RequestBody Badge badge) {
+	public Member addMemberBadge(@PathVariable(name="id") String id, @RequestBody @Valid Badge badge) {
 		Long memberId = Long.parseLong(id);
 		return memberService.addMemberBadge(memberId, badge);
 	}
@@ -61,13 +63,13 @@ public class MemberController {
 	}
 	
 	@PutMapping("/{id}")
-	public Member updateMember(@PathVariable(name="id") String id, @RequestBody Member updatedMember) {
+	public Member updateMember(@PathVariable(name="id") String id, @RequestBody @Valid Member updatedMember) {
 		Long memberId = Long.parseLong(id);
 		return memberService.updateMember(memberId, updatedMember);
 	}
 	
 	@PatchMapping("/{memberId}/memberships")
-	public Member addMembership(@PathVariable(name="memberId") Long memberId, @RequestBody Membership membership) {
+	public Member addMembership(@PathVariable(name="memberId") Long memberId, @RequestBody @Valid Membership membership) {
 		return memberService.addMembership(memberId, membership);
 	}
 	

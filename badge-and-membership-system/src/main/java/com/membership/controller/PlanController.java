@@ -6,6 +6,7 @@ import com.membership.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -26,12 +27,12 @@ public class PlanController {
     }
 
     @PostMapping
-    public Plan addAPlan(@RequestBody Plan plan){
+    public Plan addAPlan(@RequestBody @Valid Plan plan){
         return planService.save(plan);
     }
 
     @PutMapping("/{id}")
-    public Plan updateAPlan(@RequestBody Plan plan, @PathVariable(name = "id") Long id){
+    public Plan updateAPlan(@RequestBody @Valid Plan plan, @PathVariable(name = "id") Long id){
         return planService.update(plan, id);
     }
 

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,9 +23,15 @@ public class Membership
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
+
+	@NotNull(message = "membership start date should not be null")
 	private LocalDate startDate;
+
+	@Future
+	@NotNull(message = "membership end date should not be null")
 	private LocalDate endDate;    
 
+	@Valid
 	@ManyToOne
 	@JoinColumn(name = "plan_id")
 	private Plan plan;
@@ -34,6 +43,7 @@ public class Membership
 	@OneToMany(mappedBy = "membership", cascade = CascadeType.ALL)
 	private List<Transaction> transactions = new ArrayList<Transaction>();
 
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private MembershipType membershipType;
 	private int quota;
